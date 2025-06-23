@@ -1,8 +1,7 @@
 body {
-    background-color: #6495ed;
-    color: #003086;
+    background-color: #6b9fff;
+    color: #002233;
     font-family: sans-serif;
-    line-height: 1.5;
     margin: 0 auto;
     width: 80%;
     line-height: 35px;
@@ -10,25 +9,12 @@ body {
 }
 img {
     width: 50%;
-    margin: 25px auto;
+    margin: 35px auto;
     display: block;
 }
 h1 {
     text-align: center;
     font-size: 36px;
-}
-header {
-    background-color: inherit;
-    position: sticky;
-    top: 0;
-    text-align: center;
-    border: 1px solid;
-    border-color: #003086;
-}
-header a {
-    display: inline-block;
-    margin: auto;
-    width: 30%;
 }
 a {
     color: inherit;
@@ -40,10 +26,55 @@ a:hover {
 a:active {
     font-weight: lighter;
 }
-li {
-    margin-bottom: 15px;
+header {
+    text-align: center;
+    border: 1px solid;
+    border-color: #002233;
+    color: #002233;
+    font-family: inherit;
 }
-footer {
+header a {
+    text-decoration: none;
+    display: inline-block;
+    margin: auto;
+    width: 30%;
+}
+.header-object {
+    display: block;
+    width: 100%;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    margin: 0;
+    height: 1.05lh;
+}
+.header-object-body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.footer-object {
     margin-top: 50px;
-    line-height: 25px;
+    line-height: 5px;
+}
+figure {
+    margin: 50px 0;
+    width: 100%;
+    border: 1px solid;
+    border-color: #002233;
+    border-radius: 20px;
+    display: flex;
+    text-align: center;
+}
+.profile-photo,
+.blockquote {
+    margin: 0;
+    width: 49%;
+}
+.profile-photo {
+    min-height: 100%;
+    min-width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: #002233 1px solid;
 }

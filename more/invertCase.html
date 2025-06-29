@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Invert Case</title>
+        <link rel="icon" type="image/icon" href="./../favicon.ico" />
+        <link rel="stylesheet" href="./../style.css" />
+    </head>
+    <body>
+        <main> 
+            <h1>Invert Case</h1>  
+            <h2>Description</h2>    
+            <p>Realize a function that change case of each letter in string to opposite.</p>     
+            <h2>Solution</h2>  
+            <p><pre><code>
+                const invertCase = (str) => {
+                    let result = "";
+                    for (let i = 0; i < str.length; i++) {
+                        if (str[i] === str[i].toUpperCase()) {
+                            result += str[i].toLowerCase();
+                        } else {
+                            result += str[i].toUpperCase();
+                        }
+                    }
+                    return result;
+                };
+            </code></pre></p> 
+            <h2>Input<input type="text" id="input" value="Let's DO It" style="display: block;"></input></h2>  
+            <h2>Output<textarea id="output" readonly style="display: block;"></textarea></h2>  
+            <button onclick="calculate()">Calculate</button>
+        </main>
+    </body>
+    <script src='invertCase.js'></script>
+</html>

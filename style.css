@@ -1,7 +1,14 @@
+:root {
+    --bg-color: #6b9fff;
+    --alt-bg-color: #fcfcb7;
+    --text-color: #002233;
+    --hover-color: #ffd700;
+    --transition-time: 0.5s;
+}
 body {
-    background-color: #6b9fff;
-    color: #002233;
-    font-family: sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Segoe UI", sans-serif;
     margin: 0 auto;
     width: 80%;
     line-height: 35px;
@@ -21,21 +28,19 @@ h1 {
 }
 a {
     color: inherit;
+    transition: color var(--transition-time) ease;
 }
 a:hover {
-    font-weight: bolder;
-}
-a:active {
-    font-weight: lighter;
+    color: var(--hover-color);
 }
 header {
     text-align: center;
-    border: 1px solid;
-    border-color: #002233;
-    color: #002233;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
     font-family: inherit;
 }
 header a {
+    font-weight: bold;
     text-decoration: none;
     display: inline-block;
     margin: auto;
@@ -57,14 +62,22 @@ header a {
 }
 .footer-object {
     margin-top: auto;
-    line-height: 5px;
+    opacity: 0.8;
+}
+.footer-object:hover {
+    opacity: 1;
+}
+.footer-object-body {
+    line-height: 1.4;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 figure {
     margin: 50px 0;
     width: 100%;
-    border: 1px solid;
-    border-color: #002233;
-    background-color: #fcfcb7;
+    border: 1px solid var(--text-color);
+    background-color: var(--alt-bg-color);
     border-radius: 20px;
     display: flex;
     text-align: center;
@@ -79,7 +92,7 @@ figure {
     min-width: 100%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-right: #002233 1px solid;
+    border-right: var(--text-color) 1px solid;
 }
 .profile-blockquote {
     margin-top: auto;

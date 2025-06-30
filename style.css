@@ -1,8 +1,8 @@
 :root {
-    --bg-color: #6b9fff;
+    --bg-color: #c2d7ff;
     --alt-bg-color: #fcfcb7;
     --text-color: #002233;
-    --hover-color: #ffd700;
+    --hover-color: #eb9900;
     --transition-time: 0.5s;
 }
 body {
@@ -19,6 +19,8 @@ body {
 }
 img {
     width: 50%;
+    height: auto;
+    object-fit: contain;
     margin: 35px auto;
     display: block;
 }
@@ -62,7 +64,8 @@ header a {
 }
 .footer-object {
     margin-top: auto;
-    opacity: 0.8;
+    opacity: 0.8;    
+    transition: opacity var(--transition-time) ease;
 }
 .footer-object:hover {
     opacity: 1;
@@ -101,4 +104,21 @@ figure {
 .blockquote-text,
 .blockquote-paragraph {
     line-height: 1;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td,
+th {
+    width: 50%;
+    padding: 8px;
+    border: var(--text-color) 1px solid;
+    text-decoration: none;
+}
+td {
+    text-align: center;
+}
+th {
+    text-align: left;
 }

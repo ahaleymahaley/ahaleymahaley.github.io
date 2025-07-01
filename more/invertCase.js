@@ -9,9 +9,3 @@ const invertCase = (str) => {
     }
     return result;
 };
-
-async function calculate() {
-    document.getElementById("output").textContent = invertCase(document.getElementById("input").value)    
-}
-
-

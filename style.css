@@ -13,6 +13,7 @@ body {
     width: 80%;
     line-height: 35px;
     max-width: 1000px;
+    min-width: 370px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -64,7 +65,7 @@ header a {
 }
 .footer-object {
     margin-top: auto;
-    opacity: 0.8;    
+    opacity: 0.8;
     transition: opacity var(--transition-time) ease;
 }
 .footer-object:hover {

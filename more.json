@@ -1,63 +1,92 @@
 [
     {
         "type": "source",
-        "sourceName": "Hexlet",
-        "sourceUrl": "https://ru.hexlet.io/challenges"
+        "key": "hexlet",
+        "name": "Hexlet"
+    },{
+        "type": "source",
+        "key": "freecodecamp",
+        "name": "freecodecamp"
     },
     {
         "type": "task",
-        "taskName": "invert case",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_invert_case_exercise",
+        "key": "helloWorld",
+        "name": "Hello World",
+        "sourceurl": "https://ahaleymahaley.github.io/",
+        "description": "Realize a function that greets user. Input: username, output: greeting.",
+        "solutionName": "helloWorld.js",
+        "source": ""
+    },
+    {
+        "type": "task",
+        "key": "invertCase",
+        "name": "Invert case",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_invert_case_exercise",
+        "description": "Realize a function that changes case of each letter in string to opposite.",
         "solutionName": "invertCase.js",
-        "solutionUrl": "more/invertCase.html"
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "FizzBuzz",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_fizzbuzz_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "fizzBuzz",
+        "name": "FizzBuzz",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fizzbuzz_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "Perfect number",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_perfect_numbers_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "perfectNumber",
+        "name": "Perfect number",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_perfect_numbers_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "Happy Ticket",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_happy_ticket_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "happyTicket",
+        "name": "Happy Ticket",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_happy_ticket_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "Happy Number",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_happy_numbers_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "happyNumber",
+        "name": "Happy Number",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_happy_numbers_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "Reverse integer",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_reverse_integer_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "reverseInteger",
+        "name": "Reverse integer",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_reverse_integer_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "Reexport",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_reexport_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "reexport",
+        "name": "Reexport",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_reexport_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     },
     {
         "type": "task",
-        "taskName": "Fibonacci sequence",
-        "taskUrl": "https://ru.hexlet.io/challenges/js_basics_fib_exercise",
-        "solutionName": "TODO",
-        "solutionUrl": ""
+        "key": "fibonacci",
+        "name": "Fibonacci sequence",
+        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fib_exercise",
+        "description": "todo",
+        "solutionName": "todo.js",
+        "source": "hexlet"
     }
 ]

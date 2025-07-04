@@ -5,18 +5,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>more of ahaleymahaley</title>
         <link rel="icon" type="image/icon" href="./favicon.ico" />
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./style.css" />        
+        <link href="../prism/prism.css" rel="stylesheet" />
     </head>
     <body>
         <object title="header object" class="header-object" type="text/html" data="./header.html"></object>
         <main>
             <h1>Exersices from open sources with my solutions</h1>
-            <table id="dataTable">
-                <tbody>
-                </tbody>
-            </table>
+
+            <label for="sources">Choose a source:</label>
+            <select name="sources" id="sources" onchange="updateOptions()">
+                <option value="all">All</option>
+            </select>
+
+            <label for="tasks">Choose a task:</label>
+            <select name="tasks" id="tasks"  onchange="updateSolution()">
+            </select>
+
+            <h2 id="name"></h2>  
+            <h3>Source</h3>
+            <p id="source"></p>   
+            <h3>Description</h3>    
+            <p id="description"></p>     
+            <h3>Solution</h3>
+            <pre><code id="source-code" class="language-js"></code></pre>
+            <h3>Input</h3> 
+            <input title="Input" type="text" id="input" value="Input"></input>
+            <button title="Calculate Solution" onclick="calculate()">Calculate</button>
+            <h3>Output</h3>  
+            <textarea title="Output" id="output" readonly></textarea>
         </main>
         <object title="footer object" class="footer-object" type="text/html" data="./footer.html"></object>
     </body>
     <script src="./more.js"></script>
+    <script src="./prism/prism.js"></script>
 </html>

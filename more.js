@@ -1,32 +1,106 @@
-fillTheTable();
+let jsonData;
 
-async function fillTheTable() {
-    const url = "https://ahaleymahaley.github.io/more.json";
+fillSelectOptions();
+
+async function fillSelectOptions() {
+    const url = "./more.json";
     try {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
 
-        const tableData = await response.json();
-        const tbody = document.querySelector("#dataTable tbody");
+        jsonData = await response.json();
+        let selectElement;
 
-        tableData.forEach((row) => {
-            const tr = document.createElement("tr");
+        jsonData.forEach((row) => {
             switch (row.type) {
                 case "source":
-                    tr.innerHTML = `<th colspan="2"><a href="${row.sourceUrl}" target="_blank">${row.sourceName}</a></th>`;
+                    selectElement = document.getElementById("sources");
                     break;
 
                 case "task":
-                    tr.innerHTML = 
-                    `<td><a href="${row.taskUrl}" target="_blank">${row.taskName}</a></td>
-                    <td><a href="${row.solutionUrl}" target="_blank">${row.solutionName}</a></td>`;
+                    selectElement = document.getElementById("tasks");
+                    const solutionUrl = "./more/" + row.solutionName;
+                    const script = document.createElement("script");
+                    script.src = solutionUrl;
+                    document.body.appendChild(script);
                     break;
             }
-            tbody.appendChild(tr);
+            addOptionToSelect(selectElement, row.key, row.name);
         });
+        updateSolution();
     } catch (error) {
         console.error(error.message);
     }
+}
+
+async function addOptionToSelect(selectElement, optionValue, optionText) {
+    const option = document.createElement("option");
+    option.value = optionValue;
+    option.text = optionText;
+    selectElement.appendChild(option);
+}
+
+async function updateSolution() {
+    const taskKey = document.getElementById("tasks").value;
+    jsonData.forEach((row) => {
+        if (row.key === taskKey) {
+            const name = document.getElementById("name");
+            name.innerHTML = row.name;
+            const source = document.getElementById("source");
+            source.innerHTML = `<a  href="${row.sourceurl}" target="_blank">${row.sourceurl}</a>`;
+            const description = document.getElementById("description");
+            description.innerHTML = row.description;
+            const solutionUrl = "./more/" + row.solutionName;
+            const output = document.getElementById("output");
+            output.innerHTML = "";
+            fillTheCodeElement(solutionUrl);
+        }
+    });
+}
+
+async function updateOptions() {
+    const sources = document.getElementById("sources").value;
+    const tasks = document.getElementById("tasks");
+    tasks.options.length = 0;
+    jsonData.forEach((row) => {
+        if (row.type === "task" && (row.source === sources || sources === "all")) {
+            addOptionToSelect(tasks, row.key, row.name);
+        }
+    });
+    updateSolution();
+}
+
+async function fillTheCodeElement(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const codeElement = document.getElementById("source-code");
+        const data = await response.text();
+        codeElement.textContent = data;
+        Prism.highlightElement(codeElement);
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function calculate() {
+    const input = document.getElementById("input").value;
+    const output = document.getElementById("output");
+    const functionName = document.getElementById("tasks").value;
+    let result = "";
+    switch (functionName) {
+        case "invertCase":
+            result = invertCase(input);
+            break;
+        case "helloWorld":
+            result = helloWorld(input);
+            break;
+        default:
+            break;
+    }
+    output.textContent = result;
 }

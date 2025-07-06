@@ -21,9 +21,10 @@ async function fillSelectOptions() {
 
                 case "task":
                     selectElement = document.getElementById("tasks");
-                    const solutionUrl = "./more/" + row.solutionName;
+                    const solution = solutionUrl(row.key);
                     const script = document.createElement("script");
-                    script.src = solutionUrl;
+                    script.src = solution;
+                    script.type = "module";
                     document.body.appendChild(script);
                     break;
             }
@@ -33,6 +34,10 @@ async function fillSelectOptions() {
     } catch (error) {
         console.error(error.message);
     }
+}
+
+const solutionUrl = (solutionName) => {
+    return "./more/" + solutionName + ".js"
 }
 
 async function addOptionToSelect(selectElement, optionValue, optionText) {
@@ -52,10 +57,12 @@ async function updateSolution() {
             source.innerHTML = `<a  href="${row.sourceurl}" target="_blank">${row.sourceurl}</a>`;
             const description = document.getElementById("description");
             description.innerHTML = row.description;
-            const solutionUrl = "./more/" + row.solutionName;
+            const input = document.getElementById("input");
+            input.value = row.defaultInput;
+            const solution = solutionUrl(row.key);
             const output = document.getElementById("output");
             output.innerHTML = "";
-            fillTheCodeElement(solutionUrl);
+            fillTheCodeElement(solution);
         }
     });
 }
@@ -91,16 +98,8 @@ async function calculate() {
     const input = document.getElementById("input").value;
     const output = document.getElementById("output");
     const functionName = document.getElementById("tasks").value;
-    let result = "";
-    switch (functionName) {
-        case "invertCase":
-            result = invertCase(input);
-            break;
-        case "helloWorld":
-            result = helloWorld(input);
-            break;
-        default:
-            break;
-    }
-    output.textContent = result;
+    const solution = solutionUrl(functionName);
+    import(solution)
+    .then((x) => x[functionName](input))
+    .then((result) => (output.textContent = result));
 }

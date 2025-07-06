@@ -13,8 +13,8 @@
         "key": "helloWorld",
         "name": "Hello World",
         "sourceurl": "https://ahaleymahaley.github.io/",
-        "description": "Realize a function that greets user. Input: username, output: greeting.",
-        "solutionName": "helloWorld.js",
+        "description": "Realize a function that greets user.<br>Input: username.<br>Output: greeting.",
+        "defaultInput": "",
         "source": ""
     },
     {
@@ -22,8 +22,8 @@
         "key": "invertCase",
         "name": "Invert case",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_invert_case_exercise",
-        "description": "Realize a function that changes case of each letter in string to opposite.",
-        "solutionName": "invertCase.js",
+        "description": "Realize a function that changes case of each letter in string to opposite.<br>Input: string.<br>Output: inverted string.",
+        "defaultInput": "FuNnY CaSe",
         "source": "hexlet"
     },
     {
@@ -32,7 +32,7 @@
         "name": "FizzBuzz",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fizzbuzz_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     },
     {
@@ -41,7 +41,7 @@
         "name": "Perfect number",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_perfect_numbers_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     },
     {
@@ -50,7 +50,7 @@
         "name": "Happy Ticket",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_happy_ticket_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     },
     {
@@ -59,7 +59,7 @@
         "name": "Happy Number",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_happy_numbers_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     },
     {
@@ -68,7 +68,7 @@
         "name": "Reverse integer",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_reverse_integer_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     },
     {
@@ -77,7 +77,7 @@
         "name": "Reexport",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_reexport_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     },
     {
@@ -86,7 +86,7 @@
         "name": "Fibonacci sequence",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fib_exercise",
         "description": "todo",
-        "solutionName": "todo.js",
+        "defaultInput": "",
         "source": "hexlet"
     }
 ]

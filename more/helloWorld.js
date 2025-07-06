@@ -1,4 +1,4 @@
-const helloWorld = (str) => {
+export const helloWorld = (str) => {
     let result = "Hello, ";
     if (str !== "") {
         result += `${str}!`;
@@ -6,4 +6,4 @@ const helloWorld = (str) => {
         result += "World!";
     }
     return result;
-};
+}

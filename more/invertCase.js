@@ -1,4 +1,4 @@
-const invertCase = (str) => {
+export const invertCase = (str) => {
     let result = "";
     for (let i = 0; i < str.length; i++) {
         if (str[i] === str[i].toUpperCase()) {
@@ -8,4 +8,4 @@ const invertCase = (str) => {
         }
     }
     return result;
-};
+}

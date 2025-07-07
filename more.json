@@ -3,7 +3,8 @@
         "type": "source",
         "key": "hexlet",
         "name": "Hexlet"
-    },{
+    },
+    {
         "type": "source",
         "key": "freecodecamp",
         "name": "freecodecamp"
@@ -31,8 +32,8 @@
         "key": "fizzBuzz",
         "name": "FizzBuzz",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fizzbuzz_exercise",
-        "description": "todo",
-        "defaultInput": "",
+        "description": "Realize a function that prints numbers in range from <code>begin</code> to <code>end</code>. Multiples of <code>3</code> must be replaced with <code>Fizz</code>, multiples of <code>5</code> with <code>Buzz</code>, and multiples of both <code>3</code> and <code>5</code> with <code>FizzBuzz</code>.<br>Input: range of two numbers.<br>Output: sequence of numbers, Fizz, Buzz, FizzBuzz.",
+        "defaultInput": "1, 16",
         "source": "hexlet"
     },
     {

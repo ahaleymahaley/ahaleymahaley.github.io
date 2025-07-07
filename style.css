@@ -123,3 +123,9 @@ td {
 th {
     text-align: left;
 }
+.output {
+    background-color: white;
+    border: grey 1px solid;
+    width: fit-content;
+    block-size: fit-content;
+}

@@ -1,4 +1,5 @@
 let jsonData;
+const functions = new Map();
 
 fillSelectOptions();
 
@@ -14,30 +15,14 @@ async function fillSelectOptions() {
         let selectElement;
 
         jsonData.forEach((row) => {
-            switch (row.type) {
-                case "source":
-                    selectElement = document.getElementById("sources");
-                    break;
-
-                case "task":
-                    selectElement = document.getElementById("tasks");
-                    const solution = solutionUrl(row.key);
-                    const script = document.createElement("script");
-                    script.src = solution;
-                    script.type = "module";
-                    document.body.appendChild(script);
-                    break;
-            }
+            selectElement =
+                row.type === "source" ? document.getElementById("sources") : document.getElementById("tasks");
             addOptionToSelect(selectElement, row.key, row.name);
         });
         updateSolution();
     } catch (error) {
         console.error(error.message);
     }
-}
-
-const solutionUrl = (solutionName) => {
-    return "./more/" + solutionName + ".js"
 }
 
 async function addOptionToSelect(selectElement, optionValue, optionText) {
@@ -59,10 +44,10 @@ async function updateSolution() {
             description.innerHTML = row.description;
             const input = document.getElementById("input");
             input.value = row.defaultInput;
-            const solution = solutionUrl(row.key);
             const output = document.getElementById("output");
             output.innerHTML = "";
-            fillTheCodeElement(solution);
+            fillTheCodeElement(row.key);
+            return;
         }
     });
 }
@@ -79,27 +64,19 @@ async function updateOptions() {
     updateSolution();
 }
 
-async function fillTheCodeElement(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        const codeElement = document.getElementById("source-code");
-        const data = await response.text();
-        codeElement.textContent = data;
-        Prism.highlightElement(codeElement);
-    } catch (error) {
-        console.error(error.message);
+async function fillTheCodeElement(functionName) {
+    if (!functions.has(functionName)) {
+        const module = await import("./more/" + functionName + ".js");
+        functions.set(functionName, module[functionName]);
     }
+    const codeElement = document.getElementById("source-code");
+    codeElement.textContent = `export const ${functionName} = ${functions.get(functionName)}`;
+    Prism.highlightElement(codeElement);
 }
 
 async function calculate() {
     const input = document.getElementById("input").value;
     const output = document.getElementById("output");
     const functionName = document.getElementById("tasks").value;
-    const solution = solutionUrl(functionName);
-    import(solution)
-    .then((x) => x[functionName](input))
-    .then((result) => (output.textContent = result));
+    output.textContent = functions.get(functionName)(input);
 }

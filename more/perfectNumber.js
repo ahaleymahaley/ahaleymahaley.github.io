@@ -7,11 +7,12 @@ export const perfectNumber = (str) => {
     while (num != 1) {
         if (num % div === 0) {
             num /= div;
-            const mapCopy = new Map(map.entries());
-            mapCopy.forEach((element) => {
+            const tempMap = new Map();
+            map.forEach((element) => {
                 const mult = element * div;
-                if (mult < number) map.set(mult, mult);
+                if (mult < number) tempMap.set(mult, mult);
             });
+            tempMap.forEach((value, key) => map.set(key, value));
         } else {
             div++;
         }

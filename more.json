@@ -5,11 +5,6 @@
         "name": "Hexlet"
     },
     {
-        "type": "source",
-        "key": "freecodecamp",
-        "name": "freecodecamp"
-    },
-    {
         "type": "task",
         "key": "helloWorld",
         "name": "Hello World",
@@ -41,8 +36,8 @@
         "key": "perfectNumber",
         "name": "Perfect number",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_perfect_numbers_exercise",
-        "description": "todo",
-        "defaultInput": "",
+        "description": "Realize a function that returns true in case if number is perfect and false in opposite. In number theory, a perfect number is a positive integer that is equal to the sum of its positive proper divisors, that is, divisors excluding the number itself.<br>Input: number.<br>Output: true or false.",
+        "defaultInput": "28",
         "source": "hexlet"
     },
     {

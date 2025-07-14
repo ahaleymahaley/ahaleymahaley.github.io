@@ -54,8 +54,8 @@
         "key": "happyNumber",
         "name": "Happy Number",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_happy_numbers_exercise",
-        "description": "todo",
-        "defaultInput": "",
+        "description": "Realize a function that returns true in case the number is happy and false in the opposite. Happy number is the one whose chain of summing the squares of digits equals 1. Number of transformations is limited to 10 iterations.<br>Input: string with a number.<br>Output: true or false.",
+        "defaultInput": "7",
         "source": "hexlet"
     },
     {

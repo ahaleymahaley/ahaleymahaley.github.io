@@ -63,8 +63,8 @@
         "key": "reverseInteger",
         "name": "Reverse integer",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_reverse_integer_exercise",
-        "description": "todo",
-        "defaultInput": "",
+        "description": "Realize a function that changes the order of digits in number to the opposite.<br>Input: string with a number.<br>Output: reversed number.",
+        "defaultInput": "-312",
         "source": "hexlet"
     },
     {

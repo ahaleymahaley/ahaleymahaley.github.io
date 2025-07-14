@@ -27,7 +27,7 @@
         "key": "fizzBuzz",
         "name": "FizzBuzz",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fizzbuzz_exercise",
-        "description": "Realize a function that prints numbers in range from <code>begin</code> to <code>end</code>. Multiples of <code>3</code> must be replaced with <code>Fizz</code>, multiples of <code>5</code> with <code>Buzz</code>, and multiples of both <code>3</code> and <code>5</code> with <code>FizzBuzz</code>.<br>Input: range of two numbers.<br>Output: sequence of numbers, Fizz, Buzz, FizzBuzz.",
+        "description": "Realize a function that prints numbers in range from <code>begin</code> to <code>end</code>. Multiples of <code>3</code> must be replaced with <code>Fizz</code>, multiples of <code>5</code> with <code>Buzz</code>, and multiples of both <code>3</code> and <code>5</code> with <code>FizzBuzz</code>.<br>Input: string with a range of two numbers.<br>Output: sequence of numbers, Fizz, Buzz, FizzBuzz.",
         "defaultInput": "1, 16",
         "source": "hexlet"
     },
@@ -36,7 +36,7 @@
         "key": "perfectNumber",
         "name": "Perfect number",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_perfect_numbers_exercise",
-        "description": "Realize a function that returns true in case if number is perfect and false in opposite. In number theory, a perfect number is a positive integer that is equal to the sum of its positive proper divisors, that is, divisors excluding the number itself.<br>Input: number.<br>Output: true or false.",
+        "description": "Realize a function that returns true in case the number is perfect and false in the opposite. In number theory, a perfect number is a positive integer that is equal to the sum of its positive proper divisors, that is, divisors excluding the number itself.<br>Input: string with a number.<br>Output: true or false.",
         "defaultInput": "28",
         "source": "hexlet"
     },
@@ -45,8 +45,8 @@
         "key": "happyTicket",
         "name": "Happy Ticket",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_happy_ticket_exercise",
-        "description": "todo",
-        "defaultInput": "",
+        "description": "Realize a function that returns true in case the ticket number is happy and false in the opposite. Happy ticket is the one that has equal sums of numbers on left and right.<br>Input: string with a number.<br>Output: true or false.",
+        "defaultInput": "385916",
         "source": "hexlet"
     },
     {

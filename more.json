@@ -69,20 +69,11 @@
     },
     {
         "type": "task",
-        "key": "reexport",
-        "name": "Reexport",
-        "sourceurl": "https://ru.hexlet.io/challenges/js_basics_reexport_exercise",
-        "description": "todo",
-        "defaultInput": "",
-        "source": "hexlet"
-    },
-    {
-        "type": "task",
         "key": "fibonacci",
         "name": "Fibonacci sequence",
         "sourceurl": "https://ru.hexlet.io/challenges/js_basics_fib_exercise",
-        "description": "todo",
-        "defaultInput": "",
+        "description": "Realize a function that calculates Fibonacci numbers.",
+        "defaultInput": "10",
         "source": "hexlet"
     }
 ]

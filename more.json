@@ -5,6 +5,11 @@
         "name": "Hexlet"
     },
     {
+        "type": "source",
+        "key": "leetcode",
+        "name": "LeetCode"
+    },
+    {
         "type": "task",
         "key": "helloWorld",
         "name": "Hello World",
@@ -12,6 +17,15 @@
         "description": "Realize a function that greets user.<br>Input: username.<br>Output: greeting.",
         "defaultInput": "",
         "source": ""
+    },
+    {
+        "type": "task",
+        "key": "mergeSortedArray",
+        "name": "Merge Sorted Array",
+        "sourceurl": "https://leetcode.com/problems/merge-sorted-array/description/",
+        "description": "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively. Merge nums1 and nums2 into a single array sorted in non-decreasing order. <br>Input: m, n, nums1, nums2.<br>Output: merged array.",
+        "defaultInput": "3, 3, 1, 2, 3, 2, 5, 6",
+        "source": "leetcode"
     },
     {
         "type": "task",

@@ -1,7 +1,30 @@
 let jsonData;
+let jsonPredictions;
 const functions = new Map();
 
 fillSelectOptions();
+getPredictions();
+
+
+
+document.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const chatForm = event.target;
+    const input = chatForm.elements.message;
+    const userMessage = input.value;
+    addMessage("You:", "my-chat-message", userMessage);
+    const predictionId = Math.floor(Math.random() * 7).toString();
+
+    jsonPredictions.forEach((prediction) => {
+        if (predictionId === prediction.id) {
+            addMessage("The Oracle:", "user-chat-message", prediction.text);
+        }
+    });
+
+    input.value ='';
+    input.scrollIntoView();
+    input.focus();
+});
 
 async function fillSelectOptions() {
     const url = "./more.json";
@@ -85,7 +108,7 @@ async function calculate() {
 
 
 
-const listMessages = async () => {
+async function getPredictions() {
     const url = "./prediction.json";
     try {
         const response = await fetch(url);
@@ -93,34 +116,13 @@ const listMessages = async () => {
             throw new Error(`Response status: ${response.status}`);
         }
 
-        jsonData = await response.json();
-        return jsonData;
+        jsonPredictions = await response.json();
     } catch (error) {
         console.error(error.message);
     }
 };
 
-document.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const chatForm = event.target;
-    const input = chatForm.elements.message;
-    const userMessage = input.value;
-    addMessage("You:", "my-chat-message", userMessage);
-    const predictions = await listMessages();
-    const predictionId = Math.floor(Math.random() * 7).toString();
-
-    predictions.forEach((prediction) => {
-        if (predictionId === prediction.id) {
-            addMessage("The Oracle:", "user-chat-message", prediction.text);
-        }
-    });
-
-    input.value ='';
-    input.scrollIntoView();
-    input.focus();
-});
-
-const addMessage = (username, className, text) => {
+async function addMessage(username, className, text) {
     const messages = document.getElementById("chat-messages-container");
 
     const messageElement = document.createElement("div");

@@ -5,35 +5,63 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>more of ahaleymahaley</title>
         <link rel="icon" type="image/icon" href="./favicon.ico" />
-        <link rel="stylesheet" href="./style.css" />        
+        <link rel="stylesheet" href="./style.css" />
         <link href="../prism/prism.css" rel="stylesheet" />
     </head>
     <body>
         <object title="header object" class="header-object" type="text/html" data="./header.html"></object>
         <main>
-            <h1>Exersices from open sources with my solutions</h1>
+            <div id="tab" class="tab">
+                <input id="tab-exersices" name="tab-btn" type="radio" value="" />
+                <label class="tabLabel" for="tab-exersices">Exersices</label>
+                <input id="tab-chat" name="tab-btn" type="radio" value="" />
+                <label class="tabLabel" for="tab-chat">Chat with the Oracle</label>
+                <div class="tab-content" id="exersices">
+                    <h1>Exersices from open sources with my solutions</h1>
 
-            <label for="sources">Choose a source:</label>
-            <select name="sources" id="sources" onchange="updateOptions()">
-                <option value="all">All</option>
-            </select>
+                    <label for="sources">Choose a source:</label>
+                    <select name="sources" id="sources" onchange="updateOptions()">
+                        <option value="all">All</option>
+                    </select>
 
-            <label for="tasks">Choose a task:</label>
-            <select name="tasks" id="tasks"  onchange="updateSolution()">
-            </select>
+                    <label for="tasks">Choose a task:</label>
+                    <select name="tasks" id="tasks" onchange="updateSolution()"></select>
 
-            <h2 id="name"></h2>  
-            <h3>Source</h3>
-            <p id="source"></p>   
-            <h3>Description</h3>    
-            <p id="description"></p>     
-            <h3>Solution</h3>
-            <pre><code id="source-code" class="language-js"></code></pre>
-            <h3>Input</h3> 
-            <input title="Input" type="text" id="input"></input>
-            <button title="Calculate Solution" onclick="calculate()">Calculate</button>
-            <h3>Output</h3>  
-            <div class="output" id="output"></div>
+                    <h2 id="name"></h2>
+                    <h3>Source</h3>
+                    <p id="source"></p>
+                    <h3>Description</h3>
+                    <p id="description"></p>
+                    <h3>Solution</h3>
+                    <pre><code id="source-code" class="language-js"></code></pre>
+                    <h3>Input</h3>
+                    <input title="Input" type="text" id="input" />
+                    <button title="Calculate Solution" onclick="calculate()">Calculate</button>
+                    <h3>Output</h3>
+                    <div class="output" id="output"></div>
+                </div>
+                <div class="tab-content" id="chat">
+                    <h1>Chat with the Oracle</h1>
+                    <div class="chat-container">
+                        <div id="chat-messages-container" class="chat-messages-container">
+                            <div class="chat-message user-chat-message">
+                                <div class="message-username">The Oracle:</div>
+                                <div class="message-text">Send any message and you will get a prediction &#128302;</div>
+                            </div>
+                        </div>
+                        <form class="chat-form">
+                            <input
+                                type="text"
+                                name="message"
+                                placeholder="Type and send any message"
+                                class="form-input"
+                                required
+                            />
+                            <button class="form-button">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
         <object title="footer object" class="footer-object" type="text/html" data="./footer.html"></object>
     </body>

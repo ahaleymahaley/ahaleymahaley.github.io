@@ -80,3 +80,63 @@ async function calculate() {
     const functionName = document.getElementById("tasks").value;
     output.textContent = functions.get(functionName)(input);
 }
+
+
+
+
+
+const listMessages = async () => {
+    const url = "./prediction.json";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        jsonData = await response.json();
+        return jsonData;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+document.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const chatForm = event.target;
+    const input = chatForm.elements.message;
+    const userMessage = input.value;
+    addMessage("You:", "my-chat-message", userMessage);
+    const predictions = await listMessages();
+    const predictionId = Math.floor(Math.random() * 7).toString();
+
+    predictions.forEach((prediction) => {
+        if (predictionId === prediction.id) {
+            addMessage("The Oracle:", "user-chat-message", prediction.text);
+        }
+    });
+
+    input.value ='';
+    input.scrollIntoView();
+    input.focus();
+});
+
+const addMessage = (username, className, text) => {
+    const messages = document.getElementById("chat-messages-container");
+
+    const messageElement = document.createElement("div");
+    messageElement.className = "chat-message ";
+    messageElement.className += className;
+
+    const usernameElement = document.createElement("div");
+    usernameElement.textContent = username;
+    usernameElement.className = "message-username";
+
+    const textElement = document.createElement("div");
+    textElement.className = "message-text";
+    textElement.textContent = text;
+
+    messageElement.appendChild(usernameElement);
+    messageElement.appendChild(textElement);
+
+    messages.appendChild(messageElement);
+};

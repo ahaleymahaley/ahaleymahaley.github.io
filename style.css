@@ -129,3 +129,85 @@ th {
     width: fit-content;
     block-size: fit-content;
 }
+.tab {
+    margin-top: 10px;
+}
+.tab > input[type="radio"] {
+    display: none;
+}
+.tab-content {
+    display: none;
+}
+#tab-exersices:checked ~ #exersices,
+#tab-chat:checked ~ #chat{
+    display: block;
+}
+.tabLabel {
+    display: block;
+    text-align: center;
+    font-size: large;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.tabLabel:hover {
+    color: var(--hover-color);
+    background-color: var(--alt-bg-color);
+}
+.tab > input[type="radio"]:checked + label {
+    background-color: var(--alt-bg-color);
+}
+.chat-body {
+    width: 80%;
+    margin: 10px auto;
+}
+.chat-container {
+    padding: 10px;
+    background-color: white;
+}
+.chat-messages-container {
+    padding: 10px 0;
+}
+.chat-message {
+    margin: auto;
+    width: fit-content;
+}
+.user-chat-message {
+    margin-left: 0;
+}
+.user-chat-message .message-text {
+    background-color: var(--bg-color);
+    border-bottom-left-radius: 0;
+}
+.my-chat-message {
+    margin-right: 0;
+}
+.my-chat-message .message-text {
+    background-color: var(--alt-bg-color);
+    border-bottom-right-radius: 0;
+}
+.message-username {
+    padding: 0 10px;
+    opacity: 0.8;
+    font-size: small;
+}
+.message-text {
+    padding: 0 10px;
+    border-radius: 10px;
+}
+.chat-form {
+    display: flex;
+}
+.form-input {
+    padding: 0 5px;
+    flex-grow: 1;
+}
+.form-button {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px;
+}
+.form-button:hover,
+.form-button:focus {
+    background-color: var(--hover-color);
+}

@@ -16,6 +16,8 @@
                 <label class="tabLabel" for="tab-exersices">Exersices</label>
                 <input id="tab-chat" name="tab-btn" type="radio" value="" />
                 <label class="tabLabel" for="tab-chat">Chat with the Oracle</label>
+                <input id="tab-games" name="tab-btn" type="radio" value="" />
+                <label class="tabLabel" for="tab-games">Games</label>
                 <div class="tab-content" id="exersices">
                     <h1>Exersices from open sources with my solutions</h1>
 
@@ -35,8 +37,10 @@
                     <h3>Solution</h3>
                     <pre><code id="source-code" class="language-js"></code></pre>
                     <h3>Input</h3>
-                    <input title="Input" type="text" id="input" />
-                    <button title="Calculate Solution" onclick="calculate()">Calculate</button>
+                    <form>
+                        <input class="form-input" title="Input" type="text" id="input" />
+                        <button type="button" class="form-button" title="Calculate Solution" onclick="calculate()">Calculate</button>
+                    </form>
                     <h3>Output</h3>
                     <div class="output" id="output"></div>
                 </div>
@@ -57,9 +61,35 @@
                                 class="form-input"
                                 required
                             />
-                            <button class="form-button">Send</button>
+                            <button type="submit" class="form-button">Send</button>
                         </form>
                     </div>
+                </div>
+                <div class="tab-content" id="games">
+                    <h1>Games</h1>
+                    <label for="gamesSelect">Choose a game:</label>
+                    <select name="gamesSelect" id="gamesSelect">
+                        <option value="tic-tac-toe">Tic-Tac-Toe</option>
+                    </select>
+                    <div id="tic-tac-toe-board">
+                        <div class="row">
+                            <span id="cell11" class="cell"></span>
+                            <span id="cell12" class="cell"></span>
+                            <span id="cell13" class="cell"></span>
+                        </div>
+                        <div class="row">
+                            <span id="cell21" class="cell"></span>
+                            <span id="cell22" class="cell"></span>
+                            <span id="cell23" class="cell"></span>
+                        </div>
+                        <div class="row">
+                            <span id="cell31" class="cell"></span>
+                            <span id="cell32" class="cell"></span>
+                            <span id="cell33" class="cell"></span>
+                        </div>
+                    </div>
+                    <div id="gameLog"></div>
+                    <button class="reset-button" type="button" onclick="resetGameField()">Reset game field</button>
                 </div>
             </div>
         </main>

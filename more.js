@@ -1,11 +1,145 @@
 let jsonData;
 let jsonPredictions;
-const functions = new Map();
+let functions = new Map();
+let cellsToColor = new Set();
+let Ocells = new Set();
+let Xcells = new Set();
+const winningSets = [
+    ["11", "12", "13"],
+    ["21", "22", "23"],
+    ["31", "32", "33"],
+    ["11", "21", "31"],
+    ["12", "22", "32"],
+    ["13", "23", "33"],
+    ["11", "22", "33"],
+    ["13", "22", "31"],
+];
+const oSymbol = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" 
+    data-guides="{&quot;vertical&quot;:[],&quot;horizontal&quot;:[]}"><defs />
+    <ellipse fill="transparent" fill-opacity="1" stroke="#000000" stroke-opacity="1"
+    stroke-width="5" id="tSvg1415255d9d1" title="Ellipse 1" cx="50" cy="50" rx="45" ry="45" /></svg>`;
+const xSymbol = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+    data-guides="{&quot;vertical&quot;:[],&quot;horizontal&quot;:[]}"><defs />
+    <line fill="transparent" fill-opacity="1" stroke="#000000" stroke-opacity="1"
+    stroke-width="5" id="tSvgb541081796" title="Line 1" x1="10" y1="10" x2="90" y2="90" />
+    <line fill="transparent" fill-opacity="1" stroke="#000000" stroke-opacity="1"
+    stroke-width="5" id="tSvg98e8920406" title="Line 2" x1="90" y1="10" x2="10" y2="90" /></svg>`;
+const gameLog = document.getElementById("gameLog");
+const beginLog = "Click any cell to start and place 'o' or <button type='button' onclick='machineTurn()'>let the machine play first</button>";
+const userTurnLog = "Your turn";
+const machineTurnLog = "Machine's turn";
+const winLogMessage = "You win :)";
+const loseLogMessage = "You lose :(";
+const drawLogMessage = "A draw!";
+const cells = document.querySelectorAll("#tic-tac-toe-board .cell");
+
 
 fillSelectOptions();
 getPredictions();
+resetGameField();
+cells.forEach((cell) => {
+    cell.addEventListener("click", onCellClick);
+});
 
+async function resetGameField() {
+    fillTheSet();
+    Ocells.clear();
+    Xcells.clear();
+    document.getElementById("gameLog").innerHTML = beginLog;
+    cells.forEach((cell) => {
+        cell.innerHTML = "";
+        cell.style = "";
+        cell.addEventListener("click", onCellClick);
+    });
+}
 
+function onCellClick(event) {
+    const cell = event.target;
+    colorCell(cell.id.slice(4), "o");
+
+    if (isWin()) {
+        return;
+    }
+
+    machineTurn();
+}
+
+function machineTurn() {
+    gameLog.innerHTML = machineTurnLog;
+    cells.forEach((cell) => {
+        cell.removeEventListener("click", onCellClick);
+    });
+    setTimeout(() => {
+        gameLog.innerHTML += ".";
+        setTimeout(() => {
+            gameLog.innerHTML += ".";
+            setTimeout(() => {
+                gameLog.innerHTML += ".";
+                setTimeout(() => {
+                    const randomUncoloredCell = Math.floor(Math.random() * cellsToColor.size);
+                    let count = 0;
+                    for (const element of cellsToColor) {
+                        if (count === randomUncoloredCell) {
+                            colorCell(element, "x");
+                            break;
+                        }
+                        count++;
+                    }
+                    if (isWin()) {
+                        return;
+                    }
+                    cells.forEach((cell) => {
+                        cell.addEventListener("click", onCellClick);
+                    });
+                    gameLog.innerHTML = userTurnLog;                    
+                }, 200);
+            }, 200);
+        }, 200);
+    }, 200);
+}
+
+function isWin() {
+    for (const set of winningSets) {
+        let isOSubset = true;
+        let isXSubset = true;
+
+        set.forEach((cellid) => {
+            if (!Ocells.has(cellid)) isOSubset = false;
+            if (!Xcells.has(cellid)) isXSubset = false;
+        });
+        if (isOSubset || isXSubset) {
+            colorWinnigSet(set);
+
+            gameLog.innerHTML = isOSubset ? winLogMessage : loseLogMessage;
+            const cells = document.querySelectorAll("#tic-tac-toe-board .cell");
+            cells.forEach((cell) => {
+                cell.removeEventListener("click", onCellClick);
+            });
+            return true;
+        }
+    }
+    if (cellsToColor.size === 0) {
+        gameLog.innerHTML = drawLogMessage;
+        return true;
+    }
+}
+
+function colorCell(cellid, symbol) {
+    cellsToColor.delete(cellid);
+
+    const destSet = symbol === "o" ? Ocells : Xcells;
+    destSet.add(cellid);
+
+    const cell = document.getElementById("cell" + cellid);
+    cell.innerHTML = symbol === "o" ? oSymbol : xSymbol;
+}
+
+function colorWinnigSet(set) {
+    set.forEach((element) => {
+        const cell = document.getElementById("cell" + element);
+        cell.style = `background-color: var(--alt-bg-color);`;
+    });
+}
 
 document.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -21,10 +155,19 @@ document.addEventListener("submit", (event) => {
         }
     });
 
-    input.value ='';
+    input.value = "";
     input.scrollIntoView();
     input.focus();
 });
+
+async function fillTheSet() {
+    cellsToColor.clear();
+    for (let i = 1; i < 4; i++) {
+        for (let j = 1; j < 4; j++) {
+            cellsToColor.add("" + i + j);
+        }
+    }
+}
 
 async function fillSelectOptions() {
     const url = "./more.json";
@@ -69,6 +212,8 @@ async function updateSolution() {
             input.value = row.defaultInput;
             const output = document.getElementById("output");
             output.innerHTML = "";
+            output.style = "display: none;";
+
             fillTheCodeElement(row.key);
             return;
         }
@@ -100,13 +245,10 @@ async function fillTheCodeElement(functionName) {
 async function calculate() {
     const input = document.getElementById("input").value;
     const output = document.getElementById("output");
+    output.style = "display: inline;";
     const functionName = document.getElementById("tasks").value;
     output.textContent = functions.get(functionName)(input);
 }
-
-
-
-
 
 async function getPredictions() {
     const url = "./prediction.json";
@@ -120,7 +262,7 @@ async function getPredictions() {
     } catch (error) {
         console.error(error.message);
     }
-};
+}
 
 async function addMessage(username, className, text) {
     const messages = document.getElementById("chat-messages-container");
@@ -141,4 +283,4 @@ async function addMessage(username, className, text) {
     messageElement.appendChild(textElement);
 
     messages.appendChild(messageElement);
-};
+}

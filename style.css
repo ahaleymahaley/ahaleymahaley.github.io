@@ -203,7 +203,7 @@ form {
 .form-button {
     border-radius: 0 5px 5px 0;
 }
-button:hover{
+button:hover {
     background-color: var(--hover-text-color);
 }
 #tic-tac-toe-board {
@@ -214,15 +214,15 @@ button:hover{
 .cell {
     display: inline-block;
     outline: 1px solid;
-    width: 100px;
-    height: 100px;
+    aspect-ratio: 1/1;
+    height: 10vh;
     margin: 0;
     padding: 0;
     font-size: medium;
 }
 .row {
     font-size: 0;
-    height: 102px;
+    height: 10vh;
     width: fit-content;
 }
 #gameLog {

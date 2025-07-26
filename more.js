@@ -1,5 +1,5 @@
-let jsonData;
-let jsonPredictions;
+let jsonExersices = getJson("more");
+let jsonPredictions = getJson("prediction");
 let functions = new Map();
 let cellsToColor = new Set();
 let Ocells = new Set();
@@ -25,7 +25,8 @@ const xSymbol = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
     <line fill="transparent" fill-opacity="1" stroke="#000000" stroke-opacity="1"
     stroke-width="5" id="tSvg98e8920406" title="Line 2" x1="90" y1="10" x2="10" y2="90" /></svg>`;
 const gameLog = document.getElementById("gameLog");
-const beginLog = "Click any cell to start and place 'o' or <button type='button' onclick='machineTurn()'>let the machine play first</button>";
+const beginLog =
+    "Click any cell to start and place 'o' or <button type='button' onclick='machineTurn()'>let the machine play first</button>";
 const userTurnLog = "Your turn";
 const machineTurnLog = "Machine's turn";
 const winLogMessage = "You win :)";
@@ -33,13 +34,17 @@ const loseLogMessage = "You lose :(";
 const drawLogMessage = "A draw!";
 const cells = document.querySelectorAll("#tic-tac-toe-board .cell");
 
+getStarted();
 
-fillSelectOptions();
-getPredictions();
-resetGameField();
-cells.forEach((cell) => {
-    cell.addEventListener("click", onCellClick);
-});
+async function getStarted() {
+    jsonExersices = await getJson("more");
+    jsonPredictions = await getJson("prediction");
+    fillSelectOptions();
+    resetGameField();
+    cells.forEach((cell) => {
+        cell.addEventListener("click", onCellClick);
+    });
+}
 
 async function resetGameField() {
     fillTheSet();
@@ -91,7 +96,7 @@ function machineTurn() {
                     cells.forEach((cell) => {
                         cell.addEventListener("click", onCellClick);
                     });
-                    gameLog.innerHTML = userTurnLog;                    
+                    gameLog.innerHTML = userTurnLog;
                 }, 200);
             }, 200);
         }, 200);
@@ -169,26 +174,51 @@ async function fillTheSet() {
     }
 }
 
-async function fillSelectOptions() {
-    const url = "./more.json";
+async function getJson(filename) {
+    const url = `./${filename}.json`;
+
+    const cashedFileSize = localStorage.getItem(`${filename}Size`);
+
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {method: "HEAD"});
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
+        const jsonLength = response.headers.get("content-length");
+        if (cashedFileSize === jsonLength) {
+            const cashedFile = localStorage.getItem(filename);
+            return JSON.parse(cashedFile);
+        } else {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
 
-        jsonData = await response.json();
-        let selectElement;
+                jsonData = await response.json();
 
-        jsonData.forEach((row) => {
-            selectElement =
-                row.type === "source" ? document.getElementById("sources") : document.getElementById("tasks");
-            addOptionToSelect(selectElement, row.key, row.name);
-        });
-        updateSolution();
+                localStorage.setItem(filename, JSON.stringify(jsonData));
+                localStorage.setItem(`${filename}Size`, jsonLength.toString());
+
+                return jsonData;
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
     } catch (error) {
         console.error(error.message);
     }
+}
+
+async function fillSelectOptions() {
+    let selectElement;
+
+    jsonExersices.forEach((row) => {
+        selectElement = row.type === "source" ? document.getElementById("sources") : document.getElementById("tasks");
+        addOptionToSelect(selectElement, row.key, row.name);
+    });
+
+    updateSolution();
 }
 
 async function addOptionToSelect(selectElement, optionValue, optionText) {
@@ -200,7 +230,7 @@ async function addOptionToSelect(selectElement, optionValue, optionText) {
 
 async function updateSolution() {
     const taskKey = document.getElementById("tasks").value;
-    jsonData.forEach((row) => {
+    jsonExersices.forEach((row) => {
         if (row.key === taskKey) {
             const name = document.getElementById("name");
             name.innerHTML = row.name;
@@ -224,11 +254,12 @@ async function updateOptions() {
     const sources = document.getElementById("sources").value;
     const tasks = document.getElementById("tasks");
     tasks.options.length = 0;
-    jsonData.forEach((row) => {
+    jsonExersices.forEach((row) => {
         if (row.type === "task" && (row.source === sources || sources === "all")) {
             addOptionToSelect(tasks, row.key, row.name);
         }
     });
+
     updateSolution();
 }
 
@@ -248,20 +279,6 @@ async function calculate() {
     output.style = "display: inline;";
     const functionName = document.getElementById("tasks").value;
     output.textContent = functions.get(functionName)(input);
-}
-
-async function getPredictions() {
-    const url = "./prediction.json";
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        jsonPredictions = await response.json();
-    } catch (error) {
-        console.error(error.message);
-    }
 }
 
 async function addMessage(username, className, text) {

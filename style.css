@@ -39,16 +39,18 @@ a:hover {
 }
 header {
     text-align: center;
-    border: 1px solid var(--text-color);
     color: var(--text-color);
     font-family: inherit;
+    font-size: 0;
 }
 header a {
+    outline: 1px solid var(--text-color);
+    font-size: medium;
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
     margin: auto;
-    width: 30%;
+    width: 33%;
 }
 .header-object {
     display: block;
@@ -57,7 +59,7 @@ header a {
     position: sticky;
     top: 0;
     margin: 0;
-    height: 1.05lh;
+    height: 2lh;
 }
 .header-object-body {
     width: 100%;

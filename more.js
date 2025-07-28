@@ -49,9 +49,6 @@ async function getStarted() {
 }
 function switchTabByHash() {
     const hash = window.location.hash.substring(1);
-    // document.querySelectorAll('input[name="tabs"]').forEach((tab) => {
-    //     tab.checked = false;
-    // });
 
     if (hash) {
         const targetTab = document.getElementById(`tab-${hash}`);
@@ -74,13 +71,16 @@ async function resetGameField() {
 
 function onCellClick(event) {
     const cell = event.target;
-    colorCell(cell.id.slice(4), "o");
+    cellId = cell.id.slice(4);
+    if (cellsToColor.has(cellId)) {
+        colorCell(cellId, "o");
 
-    if (isWin()) {
-        return;
+        if (isWin()) {
+            return;
+        }
+
+        machineTurn();
     }
-
-    machineTurn();
 }
 
 function machineTurn() {

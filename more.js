@@ -1,4 +1,4 @@
-let jsonExersices = getJson("more");
+let jsonExercises = getJson("more");
 let jsonPredictions = getJson("prediction");
 let functions = new Map();
 let cellsToColor = new Set();
@@ -37,7 +37,9 @@ const cells = document.querySelectorAll("#tic-tac-toe-board .cell");
 getStarted();
 
 async function getStarted() {
-    jsonExersices = await getJson("more");
+    window.addEventListener("DOMContentLoaded", switchTabByHash);
+    window.addEventListener("hashchange", switchTabByHash);
+    jsonExercises = await getJson("more");
     jsonPredictions = await getJson("prediction");
     fillSelectOptions();
     resetGameField();
@@ -45,7 +47,19 @@ async function getStarted() {
         cell.addEventListener("click", onCellClick);
     });
 }
+function switchTabByHash() {
+    const hash = window.location.hash.substring(1);
+    // document.querySelectorAll('input[name="tabs"]').forEach((tab) => {
+    //     tab.checked = false;
+    // });
 
+    if (hash) {
+        const targetTab = document.getElementById(`tab-${hash}`);
+        if (targetTab) {
+            targetTab.checked = true;
+        }
+    }
+}
 async function resetGameField() {
     fillTheSet();
     Ocells.clear();
@@ -213,7 +227,7 @@ async function getJson(filename) {
 async function fillSelectOptions() {
     let selectElement;
 
-    jsonExersices.forEach((row) => {
+    jsonExercises.forEach((row) => {
         selectElement = row.type === "source" ? document.getElementById("sources") : document.getElementById("tasks");
         addOptionToSelect(selectElement, row.key, row.name);
     });
@@ -230,7 +244,7 @@ async function addOptionToSelect(selectElement, optionValue, optionText) {
 
 async function updateSolution() {
     const taskKey = document.getElementById("tasks").value;
-    jsonExersices.forEach((row) => {
+    jsonExercises.forEach((row) => {
         if (row.key === taskKey) {
             const name = document.getElementById("name");
             name.innerHTML = row.name;
@@ -254,7 +268,7 @@ async function updateOptions() {
     const sources = document.getElementById("sources").value;
     const tasks = document.getElementById("tasks");
     tasks.options.length = 0;
-    jsonExersices.forEach((row) => {
+    jsonExercises.forEach((row) => {
         if (row.type === "task" && (row.source === sources || sources === "all")) {
             addOptionToSelect(tasks, row.key, row.name);
         }

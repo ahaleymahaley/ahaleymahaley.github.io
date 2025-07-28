@@ -9,17 +9,17 @@
         <link href="../prism/prism.css" rel="stylesheet" />
     </head>
     <body>
-        <object title="header object" class="header-object" type="text/html" data="./header.html"></object>
+        <header id="header"></header>
         <main>
             <div id="tab" class="tab">
-                <input id="tab-exersices" name="tab-btn" type="radio" value="" />
-                <label class="tabLabel" for="tab-exersices">Exersices</label>
+                <input id="tab-exercises" name="tab-btn" type="radio" value="" />
+                <label class="tabLabel" for="tab-exercises">Exercises</label>
                 <input id="tab-chat" name="tab-btn" type="radio" value="" />
                 <label class="tabLabel" for="tab-chat">Chat with the Oracle</label>
                 <input id="tab-games" name="tab-btn" type="radio" value="" />
                 <label class="tabLabel" for="tab-games">Games</label>
-                <div class="tab-content" id="exersices">
-                    <h1>Exersices from open sources with my solutions</h1>
+                <div class="tab-content" id="exercises">
+                    <h1>Exercises from open sources with my solutions</h1>
 
                     <label for="sources">Choose a source:</label>
                     <select name="sources" id="sources" onchange="updateOptions()">
@@ -39,7 +39,9 @@
                     <h3>Input</h3>
                     <form>
                         <input class="form-input" title="Input" type="text" id="input" />
-                        <button type="button" class="form-button" title="Calculate Solution" onclick="calculate()">Calculate</button>
+                        <button type="button" class="form-button" title="Calculate Solution" onclick="calculate()">
+                            Calculate
+                        </button>
                     </form>
                     <h3>Output</h3>
                     <div class="output" id="output"></div>
@@ -95,6 +97,7 @@
         </main>
         <object title="footer object" class="footer-object" type="text/html" data="./footer.html"></object>
     </body>
+    <script src="./fillHeader.js"></script>
     <script src="./more.js"></script>
     <script src="./prism/prism.js"></script>
 </html>

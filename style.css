@@ -223,11 +223,6 @@ form {
 .form-button {
     border-radius: 0 5px 5px 0;
 }
-#tic-tac-toe-board {
-    display: block;
-    margin: 50px auto;
-    width: fit-content;
-}
 .cell {
     display: inline-block;
     outline: 1px solid;
@@ -242,9 +237,16 @@ form {
     height: 10vh;
     width: fit-content;
 }
-#gameLog {
+.board {
+    display: block;
+    width: fit-content;
+    margin: 25px auto;
+
+    font-size: 0;
+}
+.gameLog {
     text-align: center;
-    margin: 50px;
+    margin: 25px;
 }
 button {
     background-color: var(--alt-bg-color);
@@ -267,4 +269,13 @@ select {
     border: 1px solid var(--text-color);
     box-shadow: 0 1px 0 1px var(--alt-bg-color);
     border-radius: 0.5em;
+}
+#battleship {
+    display: none;
+}
+.board-name {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 25px;
+    font-size: large;
 }

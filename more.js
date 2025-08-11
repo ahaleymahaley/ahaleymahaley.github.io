@@ -15,7 +15,6 @@ let enemyShips = new Array();
 let userShips = new Array();
 let alreadyChecked = new Map();
 let shipToShootNext = new Array();
-let notShipToShootNext = new Array();
 const winningSets = [
     ["00", "01", "02"],
     ["10", "11", "12"],
@@ -229,17 +228,9 @@ async function machineBattleshipTurn() {
             }
         }
     } else {
-        const isMiss = getRandom(2) === 0;
-        if (isMiss && notShipToShootNext.length > 0) {
-            const coor = notShipToShootNext.pop();
-            i = coor[0];
-            j = coor[1];
-            notShipToShootNext.length = 0;
-        } else {
-            const coor = shipToShootNext.pop();
-            i = coor[0];
-            j = coor[1];
-        }
+        const coor = shipToShootNext.pop();
+        i = coor[0];
+        j = coor[1];
     }
     const symbol = userShips[i][j];
     const cell = document.getElementById("cell" + 0 + i + j);
@@ -252,7 +243,6 @@ async function machineBattleshipTurn() {
         if (isShipIsDrawn(userShips, i, j)) {
             colorSurroundings(userShips, 0, i, j);
             shipToShootNext.length = 0;
-            notShipToShootNext.length = 0;
         } else {
             let iToShootNext = -1;
             let jToShootNext = -1;
@@ -263,9 +253,6 @@ async function machineBattleshipTurn() {
                     const symbolToShoot = getShip(userShips, iToShootNext, jToShootNext);
                     if (symbolToShoot === 1) {
                         shipToShootNext.push([iToShootNext, jToShootNext]);
-                    }
-                    if (symbolToShoot === 0) {
-                        notShipToShootNext.push([iToShootNext, jToShootNext]);
                     }
                 }
             }

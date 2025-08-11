@@ -103,33 +103,24 @@ header {
     padding: 0;
 }
 figure {
-    margin: 50px 0;
-    width: 100%;
+    margin: 50px auto;
+    width: 40%;
     border: 1px solid var(--text-color);
     background-color: var(--alt-bg-color);
     border-radius: 20px;
-    display: flex;
     text-align: center;
 }
-.profile-photo,
-.profile-blockquote {
-    margin: 0;
-    width: 48%;
-}
 .profile-photo {
-    min-height: 100%;
-    min-width: 100%;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-right: var(--text-color) 1px solid;
+    border-radius: 100%;
 }
-.profile-blockquote {
-    margin-top: auto;
-    margin-bottom: auto;
+.blockquote-text {
+    font-style: italic;
 }
-.blockquote-text,
-.blockquote-paragraph {
-    line-height: 1;
+.blockquote-text::before {
+  content: "„";
+}
+.blockquote-text::after {
+  content: "“";
 }
 table {
     width: 100%;

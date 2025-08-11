@@ -6,7 +6,7 @@ document.getElementById("header").innerHTML = `
             <button id="dropbtn" type="button" onclick="toggleDropdown()" class="dropbtn nav-link">More</button>
             <div id="moreDropdown" class="dropdown-content">
                 <a class="dropdown-link" href="./more.html#exercises">Exercises</a>
-                <a class="dropdown-link" href="./more.html#chat">Chat with The Oracle</a>
+                <a class="dropdown-link" href="./more.html#chat">The Oracle</a>
                 <a class="dropdown-link" href="./more.html#games">Games</a>
             </div>
         </div>

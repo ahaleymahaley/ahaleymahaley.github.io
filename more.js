@@ -233,6 +233,8 @@ async function machineBattleshipTurn() {
         j = coor[1];
     }
     const symbol = userShips[i][j];
+    isGameStarted = true;
+
     const cell = document.getElementById("cell" + 0 + i + j);
     if (symbol === 1) {
         cell.innerHTML = dotSymbol;

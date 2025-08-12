@@ -103,15 +103,16 @@ header {
     padding: 0;
 }
 figure {
-    margin: 50px auto;
-    width: 40%;
+    margin: 3vh auto;
+    width: 70vw;
+    max-width: 600px;
     border: 1px solid var(--text-color);
     background-color: var(--alt-bg-color);
     border-radius: 20px;
     text-align: center;
 }
 .profile-photo {
-    border-radius: 100%;
+    border-radius: 50%;
 }
 .blockquote-text {
     font-style: italic;

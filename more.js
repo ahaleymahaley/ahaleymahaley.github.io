@@ -410,6 +410,7 @@ async function machineTurn() {
     });
 
     await fillMachineTurnLog();
+    isGameStarted = true;
 
     const randomUncoloredCell = getRandom(cellsToColor.size);
     let count = 0;

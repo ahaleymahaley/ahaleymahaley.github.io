@@ -271,3 +271,7 @@ select {
     margin-top: 25px;
     font-size: large;
 }
+#difficulty {
+    width: 100%;
+    accent-color: var(--hover-bg-color);
+}

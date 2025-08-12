@@ -48,6 +48,13 @@ const winLogMessage = "You win :)";
 const loseLogMessage = "You lose :(";
 const drawLogMessage = "A draw!";
 const shipsCount = 20;
+const difficultyLevel = [
+    "Too Easy &#128564;",
+    "Easy &#128513;",
+    "Normal &#128512;",
+    "Hard &#128517;",
+    "Too Hard &#128565;",
+];
 
 getStarted();
 
@@ -65,6 +72,12 @@ async function getStarted() {
     userCells = document.querySelectorAll(".user-board .cell");
     jsonExercises = await getJson("more");
     jsonPredictions = await getJson("prediction");
+    const difficulty = document.getElementById("difficulty");
+    const difficultyTitle = document.getElementById("difficultyTitle");
+    difficulty.addEventListener("input", () => {
+        const difficultyValue = parseInt(difficulty.value);
+        difficultyTitle.innerHTML = "Choose difficulty: " + difficultyLevel[difficultyValue / 25];
+    });
     fillSelectOptions();
     resetGameField();
 }
@@ -219,18 +232,48 @@ async function machineBattleshipTurn() {
     let i;
     let j;
     if (shipToShootNext.length === 0) {
-        let uncoloredCellFounded = false;
-        while (!uncoloredCellFounded) {
-            i = getRandom(10);
-            j = getRandom(10);
-            if (userShips[i][j] === 0 || userShips[i][j] === 1) {
-                uncoloredCellFounded = true;
-            }
+        const difficulty = parseInt(document.getElementById("difficulty").value);
+        const isHit = difficulty === 100 ? true : false;
+        const isMiss = difficulty === 0 ? true : false;
+        if (isMiss) {
+            let iterCount = 0;
+            do {
+                i = getRandom(10);
+                j = getRandom(10);
+                iterCount++;
+            } while (userShips[i][j] !== 0 && iterCount < 10);
+        }
+        if (isHit) {
+            do {
+                i = getRandom(10);
+                j = getRandom(10);
+            } while (userShips[i][j] !== 1);
+        }
+        if (!isMiss && !isHit) {
+            do {
+                i = getRandom(10);
+                j = getRandom(10);
+            } while (userShips[i][j] !== 0 && userShips[i][j] !== 1);
         }
     } else {
         const coor = shipToShootNext.pop();
         i = coor[0];
         j = coor[1];
+        const difficulty = parseInt(document.getElementById("difficulty").value);
+        const isMiss = getRandom(100) > difficulty ? true : false;
+        if (isMiss) {
+            let isEmptyCellFounded;
+            for (let x = -1; x < 2 && !isEmptyCellFounded; x += 2) {
+                for (let y = -1; y < 2 && !isEmptyCellFounded; y += 2) {
+                    if (getShip(userShips, i + x, j + y) === 0) {
+                        shipToShootNext.push([i, j]);
+                        i += x;
+                        j += y;
+                        isEmptyCellFounded = true;
+                    }
+                }
+            }
+        }
     }
     const symbol = userShips[i][j];
     isGameStarted = true;
@@ -305,6 +348,20 @@ async function drawGameField(game) {
     const fieldSize = game === "tic-tac-toe" ? 3 : 10;
     const cellSize = game === "tic-tac-toe" ? "10vh" : "3vh";
     const pref = game === "tic-tac-toe" ? false : true;
+    if (pref) {
+        const rangeTitle = document.createElement("h3");
+        rangeTitle.innerHTML = "Choose difficulty: " + difficultyLevel[2];
+        rangeTitle.id = "difficultyTitle";
+        gameBoard.appendChild(rangeTitle);
+        const range = document.createElement("input");
+        range.id = "difficulty";
+        range.type = "range";
+        range.min = 0;
+        range.max = 100;
+        range.step = 25;
+        range.value = 50;
+        gameBoard.appendChild(range);
+    }
     for (let n = 0; n < fieldNumber; n++) {
         const board = document.createElement("div");
         board.className = "board";
